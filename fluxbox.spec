@@ -1,7 +1,7 @@
 %define name    fluxbox
 %define version 1.0
 %define beta rc3
-%define rel 2
+%define rel 3
 
 %if %{beta}
 %define sversion %{version}%{beta}
@@ -93,8 +93,8 @@ EOF
 %__install -m 0755 %SOURCE11 %buildroot%_sysconfdir/menu.d/%name
 
 # Artwiz fonts
-%__install -d %buildroot%_libdir/X11/fonts
-%__tar xjf %SOURCE6 -C %buildroot%_libdir/X11/fonts/
+%__install -d %buildroot%_datadir/fonts
+%__tar xjf %SOURCE6 -C %buildroot%_datadir/fonts/
 
 # mdk-style and background.
 %__install -d %buildroot%_datadir/%name/{styles,backgrounds}
@@ -164,8 +164,8 @@ fi
 
 %_mandir/man1/*
 
-%dir %_libdir/X11/fonts/fluxbox-artwiz-fonts
-%_libdir/X11/fonts/fluxbox-artwiz-fonts/*.gz
+%dir %_datadir/fonts/fluxbox-artwiz-fonts
+%_datadir/fonts/fluxbox-artwiz-fonts/*.gz
 
 %{_liconsdir}/%{name}.png
 %{_iconsdir}/%{name}.png
