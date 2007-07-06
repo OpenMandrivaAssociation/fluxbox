@@ -1,7 +1,7 @@
 %define name    fluxbox
 %define version 1.0
 %define beta rc3
-%define rel 1
+%define rel 2
 
 %if %{beta}
 %define sversion %{version}%{beta}
@@ -38,7 +38,6 @@ Source10:         %name-splash.jpg
 Source11:         %name-menu-xdg
 Buildrequires:    XFree86-devel
 Requires:         xmessage
-Requires(post):           chkfontpath
 Requires(post):           mkfontdir
 BuildRoot:        %_tmppath/%{name}-%{version}-%{release}-buildroot
 
@@ -114,6 +113,9 @@ cd -
 # bzip2 manpages (should be automatic, dirty); lenny
 %__bzip2 %buildroot%_mandir/man1/*.1
 
+mkdir -p %{buildroot}%_sysconfdir/X11/fontpath.d/
+ln -s ../../..%_datadir/fonts/fluxbox-artwiz-fonts \
+    %{buildroot}%_sysconfdir/X11/fontpath.d/fluxbox-artwiz-fonts:unscaled:pri=50
 
 %post
 %update_menus
@@ -135,7 +137,6 @@ cd %_libdir/X11/fonts/fluxbox-artwiz-fonts
 # Remove bsetroot-alternatives and artwizfonts from fontpath
 if [ "$1" = 0 ]; then
     update-alternatives --remove bsetroot %_bindir/bsetroot-%name
-    /usr/sbin/chkfontpath -q -r %_libdir/X11/fonts/%name-artwiz-fonts:unscaled
 fi
 
 
@@ -178,5 +179,5 @@ fi
 %_datadir/%name/backgrounds/default.png
 %_datadir/%name/styles/*
 %_datadir/%name/pixmaps/*
-
+%_sysconfdir/X11/fontpath.d/fluxbox-artwiz-fonts:unscaled:pri=50
 
