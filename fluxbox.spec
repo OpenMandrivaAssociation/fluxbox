@@ -1,6 +1,6 @@
 %define name    fluxbox
-%define version 1.0
-%define beta rc3
+%define version 1.0.0
+%define beta 0
 %define rel 3
 
 %if %{beta}
