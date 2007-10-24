@@ -153,6 +153,7 @@ fi
 %_bindir/fluxbox-generate_menu
 %_bindir/fluxbox-update_configs
 %_bindir/startfluxbox
+%_bindir/fluxbox-remote
 
 %config(noreplace) %_sysconfdir/X11/%name/menu
 %config(noreplace) %_sysconfdir/X11/wmsession.d/16%name
