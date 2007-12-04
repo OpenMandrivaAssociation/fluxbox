@@ -36,7 +36,7 @@ Source4:          %name-%style.tar.bz2
 Source6:          %name-artwiz-fonts.tar.bz2
 Source10:         %name-splash.jpg
 Source11:         %name-menu-xdg
-Buildrequires:    XFree86-devel
+Buildrequires:    X11-devel
 Requires:         xmessage
 Requires(post):           mkfontdir
 BuildRoot:        %_tmppath/%{name}-%{version}-%{release}-buildroot
