@@ -39,6 +39,7 @@ Source11:         %name-menu-xdg
 Buildrequires:    X11-devel
 Requires:         xmessage
 Requires(post):           mkfontdir
+BuildRoot:        %_tmppath/%{name}-%{version}-%{release}-buildroot
 
 %description
 Fluxbox is yet another windowmanager for X. It's a fork from the origi-
