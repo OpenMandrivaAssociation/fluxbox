@@ -38,7 +38,7 @@ Source10:         %name-splash.jpg
 Source11:         %name-menu-xdg
 Buildrequires:    X11-devel
 Requires:         xmessage
-Requires(post):           mkfontdir
+Requires(post):   mkfontdir
 Requires(post):   chkfontpath
 BuildRoot:        %_tmppath/%{name}-%{version}-%{release}-buildroot
 
