@@ -125,9 +125,9 @@ ln -s ../../..%_datadir/fonts/fluxbox-artwiz-fonts \
 update-alternatives --install %_bindir/bsetroot bsetroot %_bindir/bsetroot-%name 20
 
 #artwiz fontz
-cd %_libdir/X11/fonts/fluxbox-artwiz-fonts
+cd %_datadir/fonts/fluxbox-artwiz-fonts
 %_bindir/mkfontdir
-/usr/sbin/chkfontpath -q -a %_libdir/X11/fonts/fluxbox-artwiz-fonts:unscaled
+/usr/sbin/chkfontpath -q -a %_datadir/fonts/fluxbox-artwiz-fonts:unscaled
 
 
 %postun
