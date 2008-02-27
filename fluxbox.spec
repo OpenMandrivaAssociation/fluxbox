@@ -1,7 +1,7 @@
 %define name    fluxbox
 %define version 1.0.0
 %define beta 0
-%define rel 4
+%define rel 5
 
 %if %{beta}
 %define sversion %{version}%{beta}
@@ -36,10 +36,20 @@ Source4:          %name-%style.tar.bz2
 Source6:          %name-artwiz-fonts.tar.bz2
 Source10:         %name-splash.jpg
 Source11:         %name-menu-xdg
-Buildrequires:    X11-devel
+BuildRequires:    imlib2-devel
+BuildRequires:    zlib-devel
+BuildRequires:    libice-devel
+BuildRequires:    libsm-devel
+BuildRequires:    libx11-devel
+BuildRequires:    libxext-devel
+BuildRequires:    libxft-devel
+BuildRequires:    libxinerama-devel
+BuildRequires:    libxpm-devel
+BuildRequires:    libxrandr-devel
+BuildRequires:    libxrender-devel
+BuildRequires:    libfontconfig-devel
+BuildRequires:    mkfontdir
 Requires:         xmessage
-Requires(post):   mkfontdir
-Requires(post):   chkfontpath
 BuildRoot:        %_tmppath/%{name}-%{version}-%{release}-buildroot
 
 %description
@@ -96,6 +106,9 @@ EOF
 # Artwiz fonts
 %__install -d %buildroot%_datadir/fonts
 %__tar xjf %SOURCE6 -C %buildroot%_datadir/fonts/
+pushd %buildroot%_datadir/fonts/fluxbox-artwiz-fonts
+mkfontdir
+popd
 
 # mdk-style and background.
 %__install -d %buildroot%_datadir/%name/{styles,backgrounds}
@@ -125,17 +138,11 @@ ln -s ../../..%_datadir/fonts/fluxbox-artwiz-fonts \
 #blackbox-alternatives
 update-alternatives --install %_bindir/bsetroot bsetroot %_bindir/bsetroot-%name 20
 
-#artwiz fontz
-cd %_datadir/fonts/fluxbox-artwiz-fonts
-%_bindir/mkfontdir
-/usr/sbin/chkfontpath -q -a %_datadir/fonts/fluxbox-artwiz-fonts:unscaled
-
-
 %postun
 %clean_menus
 %make_session
 
-# Remove bsetroot-alternatives and artwizfonts from fontpath
+# Remove bsetroot-alternatives
 if [ "$1" = 0 ]; then
     update-alternatives --remove bsetroot %_bindir/bsetroot-%name
 fi
@@ -168,6 +175,7 @@ fi
 
 %dir %_datadir/fonts/fluxbox-artwiz-fonts
 %_datadir/fonts/fluxbox-artwiz-fonts/*.gz
+%_datadir/fonts/fluxbox-artwiz-fonts/fonts.dir
 
 %{_liconsdir}/%{name}.png
 %{_iconsdir}/%{name}.png
