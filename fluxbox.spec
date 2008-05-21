@@ -36,6 +36,7 @@ Source4:          %name-%style.tar.bz2
 Source6:          %name-artwiz-fonts.tar.bz2
 Source10:         %name-splash.jpg
 Source11:         %name-menu-xdg
+Patch0: fluxbox-gcc43.patch
 BuildRequires:    imlib2-devel
 BuildRequires:    zlib-devel
 BuildRequires:    libice-devel
@@ -50,7 +51,7 @@ BuildRequires:    libxrender-devel
 BuildRequires:    libfontconfig-devel
 BuildRequires:    mkfontdir
 Requires:         xmessage
-BuildRoot:        %_tmppath/%{name}-%{version}-%{release}-buildroot
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
 Fluxbox is yet another windowmanager for X. It's a fork from the origi-
@@ -61,10 +62,11 @@ answer is: LOTS!
 
 Have a look at the homepage for more info ;)
 
-
 %prep
 
 %setup -q -a3 -n %{name}-%{sversion}
+%patch0 -p1 -b .gcc43
+
 %if %mdkversion < 200710
 autoreconf
 %endif
