@@ -134,14 +134,18 @@ ln -s ../../..%_datadir/fonts/fluxbox-artwiz-fonts \
     %{buildroot}%_sysconfdir/X11/fontpath.d/fluxbox-artwiz-fonts:unscaled:pri=50
 
 %post
+%if %mdkversion < 200900
 %update_menus
+%endif
 %make_session
 
 #blackbox-alternatives
 update-alternatives --install %_bindir/bsetroot bsetroot %_bindir/bsetroot-%name 20
 
 %postun
+%if %mdkversion < 200900
 %clean_menus
+%endif
 %make_session
 
 # Remove bsetroot-alternatives
