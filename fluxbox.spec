@@ -1,7 +1,7 @@
 %define name    fluxbox
-%define version 1.0.0
+%define version 1.1.0
 %define beta 0
-%define rel 5
+%define rel 1
 
 %if %{beta}
 %define sversion %{version}%{beta}
@@ -36,7 +36,9 @@ Source4:          %name-%style.tar.bz2
 Source6:          %name-artwiz-fonts.tar.bz2
 Source10:         %name-splash.jpg
 Source11:         %name-menu-xdg
-Patch0: fluxbox-gcc43.patch
+Patch0: fluxbox-startfluxbox-pulseaudio.patch
+Patch1: fluxbox-fix-windowmenu-makefile.patch
+Patch2: fluxbox-gcc43.patch
 BuildRequires:    imlib2-devel
 BuildRequires:    zlib-devel
 BuildRequires:    libice-devel
@@ -62,10 +64,22 @@ answer is: LOTS!
 
 Have a look at the homepage for more info ;)
 
+%package pulseaudio
+Group:          Graphical desktop/Other
+Summary:        Enable pulseaudio support
+Requires:       %{name} = %{version}-%{release}
+Requires:       alsa-plugins-pulseaudio
+Requires:       pulseaudio pulseaudio-module-x11 pulseaudio-utils
+
+%description pulseaudio
+Enable pulseaudio support.
+
 %prep
 
 %setup -q -a3 -n %{name}-%{sversion}
-%patch0 -p1 -b .gcc43
+%patch0 -b .pulseaudio
+%patch1 -p0 -b .windowmenu
+%patch2 -p1 -b .gcc43
 
 %if %mdkversion < 200710
 autoreconf
@@ -73,12 +87,18 @@ autoreconf
 
 %build
 %configure2_5x \
+    --enable-xft \
+    --enable-gnome \
     --enable-kde \
     --enable-xinerama \
+    --enable-imlib2 \
+    --enable-nls \
     --with-menu=%_sysconfdir/X11/fluxbox/menu \
     --with-style=%_datadir/%name/styles/%style \
     --with-keys=%_datadir/%name/keys \
-    --with-init=%_datadir/%name/init
+    --with-init=%_datadir/%name/init \
+    --disable-static
+
 %make
 
 %install
@@ -133,6 +153,9 @@ mkdir -p %{buildroot}%_sysconfdir/X11/fontpath.d/
 ln -s ../../..%_datadir/fonts/fluxbox-artwiz-fonts \
     %{buildroot}%_sysconfdir/X11/fontpath.d/fluxbox-artwiz-fonts:unscaled:pri=50
 
+mkdir -p $RPM_BUILD_ROOT/%{_sysconfdir}
+touch -r ChangeLog $RPM_BUILD_ROOT/%{_sysconfdir}/fluxbox-pulseaudio
+
 %post
 %if %mdkversion < 200900
 %update_menus
@@ -152,7 +175,6 @@ update-alternatives --install %_bindir/bsetroot bsetroot %_bindir/bsetroot-%name
 if [ "$1" = 0 ]; then
     update-alternatives --remove bsetroot %_bindir/bsetroot-%name
 fi
-
 
 %clean
 %__rm -rf %buildroot
@@ -196,4 +218,12 @@ fi
 %_datadir/%name/styles/*
 %_datadir/%name/pixmaps/*
 %_sysconfdir/X11/fontpath.d/fluxbox-artwiz-fonts:unscaled:pri=50
+%{_datadir}/%name/apps
+%{_datadir}/%name/overlay
+%{_datadir}/%name/windowmenu
+%{_datadir}/%name/nls/*
+%{_mandir}/man5/fluxbox-keys.5.lzma
 
+%files pulseaudio
+%defattr(-,root,root,755)
+%{_sysconfdir}/fluxbox-pulseaudio
