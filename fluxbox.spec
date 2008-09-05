@@ -1,5 +1,5 @@
 %define name    fluxbox
-%define version 1.1.0
+%define version 1.1.0.1
 %define beta 0
 %define rel 1
 
@@ -37,7 +37,6 @@ Source6:          %name-artwiz-fonts.tar.bz2
 Source10:         %name-splash.jpg
 Source11:         %name-menu-xdg
 Patch0: fluxbox-startfluxbox-pulseaudio.patch
-Patch1: fluxbox-fix-windowmenu-makefile.patch
 Patch2: fluxbox-gcc43.patch
 BuildRequires:    imlib2-devel
 BuildRequires:    zlib-devel
@@ -78,7 +77,6 @@ Enable pulseaudio support.
 
 %setup -q -a3 -n %{name}-%{sversion}
 %patch0 -b .pulseaudio
-%patch1 -p0 -b .windowmenu
 %patch2 -p1 -b .gcc43
 
 %if %mdkversion < 200710
