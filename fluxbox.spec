@@ -1,5 +1,5 @@
 %define name    fluxbox
-%define version 1.1.0.1
+%define version 1.1.1
 %define beta 0
 %define rel 1
 
