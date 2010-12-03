@@ -220,7 +220,7 @@ fi
 %{_datadir}/%name/overlay
 %{_datadir}/%name/windowmenu
 %{_datadir}/%name/nls/*
-%{_mandir}/man5/fluxbox-keys.5.lzma
+%{_mandir}/man5/fluxbox-keys.5.*
 
 %files pulseaudio
 %defattr(-,root,root,755)
