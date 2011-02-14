@@ -1,7 +1,7 @@
 %define name    fluxbox
 %define version 1.1.1
 %define beta 0
-%define rel 5
+%define rel 6
 
 %if %{beta}
 %define sversion %{version}%{beta}
@@ -52,6 +52,7 @@ BuildRequires:    libxrender-devel
 BuildRequires:    libfontconfig-devel
 BuildRequires:    mkfontdir
 Requires:         xmessage
+Requires:         xdg-compliance-menu
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
@@ -76,7 +77,7 @@ Enable pulseaudio support.
 %prep
 
 %setup -q -a3 -n %{name}-%{sversion}
-%patch0 -b .pulseaudio
+%patch0 -p0 -b .pulseaudio
 %patch2 -p1 -b .gcc43
 
 %if %mdkversion < 200710
