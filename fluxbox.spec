@@ -1,7 +1,7 @@
 %define name    fluxbox
-%define version 1.1.1
+%define version 1.3.0
 %define beta 0
-%define rel 6
+%define rel 1
 
 %if %{beta}
 %define sversion %{version}%{beta}
@@ -30,7 +30,7 @@ Release:          %release
 Group:            Graphical desktop/Other
 License:          MIT
 URL:              http://fluxbox.sourceforge.net
-Source:           http://prdownloads.sourceforge.net/%name/%name-%sversion.tar.bz2
+Source:           http://prdownloads.sourceforge.net/%name/%name-%sversion.tar.gz
 Source3:          %name-icons.tar.bz2
 Source4:          %name-%style.tar.bz2
 Source6:          %name-artwiz-fonts.tar.bz2
@@ -222,6 +222,9 @@ fi
 %{_datadir}/%name/windowmenu
 %{_datadir}/%name/nls/*
 %{_mandir}/man5/fluxbox-keys.5.*
+%{_mandir}/man5/fluxbox-apps.5*
+%{_mandir}/man5/fluxbox-menu.5*
+%{_mandir}/man5/fluxbox-style.5*
 
 %files pulseaudio
 %defattr(-,root,root,755)
