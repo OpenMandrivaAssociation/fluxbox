@@ -38,6 +38,7 @@ Source10:         %name-splash.jpg
 Source11:         %name-menu-xdg
 Patch0: fluxbox-startfluxbox-pulseaudio.patch
 Patch2: fluxbox-gcc43.patch
+Patch3: fluxbox-gcc46.patch
 BuildRequires:    imlib2-devel
 BuildRequires:    zlib-devel
 BuildRequires:    libice-devel
@@ -79,6 +80,7 @@ Enable pulseaudio support.
 %setup -q -a3 -n %{name}-%{sversion}
 %patch0 -p0 -b .pulseaudio
 %patch2 -p1 -b .gcc43
+%patch3 -p1 -b .gcc46
 
 %if %mdkversion < 200710
 autoreconf
@@ -88,15 +90,13 @@ autoreconf
 %configure2_5x \
     --enable-xft \
     --enable-gnome \
-    --enable-kde \
     --enable-xinerama \
     --enable-imlib2 \
     --enable-nls \
     --with-menu=%_sysconfdir/X11/fluxbox/menu \
     --with-style=%_datadir/%name/styles/%style \
     --with-keys=%_datadir/%name/keys \
-    --with-init=%_datadir/%name/init \
-    --disable-static
+    --with-init=%_datadir/%name/init
 
 %make
 
