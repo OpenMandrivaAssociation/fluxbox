@@ -51,7 +51,9 @@ BuildRequires:	libxrender-devel
 BuildRequires:	libfontconfig-devel
 BuildRequires:	mkfontdir
 Requires:	xmessage
+%if %{mdvver} >= 201100
 Requires:	xdg-compliance-menu
+%endif
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
