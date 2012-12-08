@@ -1,0 +1,15 @@
+#!/bin/sh
+
+if [ "$USER_MENU" = "1" ]; then
+ OUTPUTDIR=$HOME/.fluxbox
+else
+ OUTPUTDIR=/etc/X11/fluxbox
+fi
+
+if [ "$VERBOSE" = "1" ]; then
+ echo "writing to $OUTPUTDIR/menu"
+/usr/bin/xdg_menu --verbose --fullmenu --format fluxbox > $OUTPUTDIR/menu
+else
+/usr/bin/xdg_menu --fullmenu --format fluxbox > $OUTPUTDIR/menu 2> /dev/null
+fi
+
