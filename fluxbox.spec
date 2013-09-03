@@ -11,7 +11,7 @@
 
 Summary:	Windowmanager based on the original blackbox-code
 Name:		fluxbox
-Version:	1.3.3
+Version:	1.3.5
 Release:	1
 Group:		Graphical desktop/Other
 License:	MIT
@@ -143,16 +143,8 @@ touch -r ChangeLog %{buildroot}%{_sysconfdir}/fluxbox-pulseaudio
 %post
 %make_session
 
-#blackbox-alternatives
-update-alternatives --install %{_bindir}/bsetroot bsetroot %{_bindir}/bsetroot-%{name} 20
-
 %postun
 %make_session
-
-# Remove bsetroot-alternatives
-if [ "$1" = 0 ]; then
-    update-alternatives --remove bsetroot %{_bindir}/bsetroot-%{name}
-fi
 
 %files
 %doc AUTHORS COPYING ChangeLog INSTALL NEWS README TODO
@@ -167,7 +159,6 @@ fi
 %{_bindir}/fluxbox-update_configs
 %{_bindir}/startfluxbox
 %{_bindir}/fluxbox-remote
-
 %{_mandir}/man1/*
 
 %dir %{_datadir}/fonts/fluxbox-artwiz-fonts

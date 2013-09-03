@@ -1,6 +1,7 @@
----
-sources:
+removed_sources:
   fluxbox-1.3.3.tar.gz: 1284f367e34c9356c522438f767c2e70c4f503b7
+sources:
+  fluxbox-1.3.5.tar.gz: 76873e9110a79cb4dbeaea6f7f1e96e448e368cd
   fluxbox-Met-Anti-Flux-blue.tar.bz2: 2cdce9b9c8d51e099f2c627eec0d364c5ef2e024
   fluxbox-artwiz-fonts.tar.bz2: e857d160e26c749a8f999831dabefba27b4e4c6f
   fluxbox-icons.tar.bz2: 7b7b40381476a67ffe4218d60cdee656a5ed4503
