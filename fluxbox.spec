@@ -140,12 +140,6 @@ ln -s ../../..%{_datadir}/fonts/fluxbox-artwiz-fonts \
 mkdir -p %{buildroot}%{_sysconfdir}
 touch -r ChangeLog %{buildroot}%{_sysconfdir}/fluxbox-pulseaudio
 
-%post
-%make_session
-
-%postun
-%make_session
-
 %files
 %doc AUTHORS COPYING ChangeLog INSTALL NEWS README TODO
 %config(noreplace) %{_sysconfdir}/X11/%{name}/menu
