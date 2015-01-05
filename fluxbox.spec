@@ -12,7 +12,7 @@
 Summary:	Windowmanager based on the original blackbox-code
 Name:		fluxbox
 Version:	1.3.5
-Release:	8
+Release:	9
 Group:		Graphical desktop/Other
 License:	MIT
 URL:		http://fluxbox.sourceforge.net
@@ -167,14 +167,14 @@ touch -r ChangeLog %{buildroot}%{_sysconfdir}/fluxbox-pulseaudio
 %{_datadir}/%{name}/init
 %{_datadir}/%{name}/keys
 %{_datadir}/%{name}/splash.jpg
-%{_datadir}/%{name}/backgrounds/default.png
-%{_datadir}/%{name}/styles/*
-%{_datadir}/%{name}/pixmaps/*
+%{_datadir}/%{name}/backgrounds
+%{_datadir}/%{name}/styles
+%{_datadir}/%{name}/pixmaps
 %{_sysconfdir}/X11/fontpath.d/fluxbox-artwiz-fonts:unscaled:pri=50
 %{_datadir}/%{name}/apps
 %{_datadir}/%{name}/overlay
 %{_datadir}/%{name}/windowmenu
-%{_datadir}/%{name}/nls/*
+%{_datadir}/%{name}/nls
 %{_mandir}/man5/fluxbox-keys.5.*
 %{_mandir}/man5/fluxbox-apps.5*
 %{_mandir}/man5/fluxbox-menu.5*
