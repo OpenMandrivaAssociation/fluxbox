@@ -11,8 +11,8 @@
 
 Summary:	Windowmanager based on the original blackbox-code
 Name:		fluxbox
-Version:	1.3.5
-Release:	10
+Version:	1.3.7
+Release:	1
 Group:		Graphical desktop/Other
 License:	MIT
 URL:		http://fluxbox.sourceforge.net
@@ -23,7 +23,6 @@ Source6:	%{name}-artwiz-fonts.tar.bz2
 Source10:	%{name}-splash.jpg
 Source11:	%{name}-menu-xdg
 Patch0:		fluxbox-startfluxbox-pulseaudio.patch
-Patch2:		fluxbox-gcc43.patch
 
 BuildRequires:	mkfontdir
 # Make sure these exist
@@ -71,10 +70,16 @@ Enable pulseaudio support.
 %prep
 %setup -q -a3
 %patch0 -p0 -b .pulseaudio
-%patch2 -p1 -b .gcc43
+#% patch2 -p1 -b .gcc43
+sed -i 's!AM_ICONV!!g' configure.ac
+libtoolize --force
+aclocal
+autoheader
+automake --force-missing --add-missing
+autoconf
 
 %build
-%configure2_5x \
+%configure \
 	--enable-xft \
 	--enable-xinerama \
 	--enable-imlib2 \
