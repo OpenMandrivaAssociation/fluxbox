@@ -23,6 +23,7 @@ Source6:	%{name}-artwiz-fonts.tar.bz2
 Source10:	%{name}-splash.jpg
 Source11:	%{name}-menu-xdg
 Patch0:		fluxbox-startfluxbox-pulseaudio.patch
+Patch1:		fluxbox-1.3.7-compile.patch
 
 BuildRequires:	mkfontdir
 # Make sure these exist
@@ -70,6 +71,7 @@ Enable pulseaudio support.
 %prep
 %setup -q -a3
 %patch0 -p0 -b .pulseaudio
+%patch1 -p1 -b .compile~
 #% patch2 -p1 -b .gcc43
 sed -i 's!AM_ICONV!!g' configure.ac
 libtoolize --force
