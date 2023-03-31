@@ -12,7 +12,7 @@
 Summary:	Windowmanager based on the original blackbox-code
 Name:		fluxbox
 Version:	1.3.7
-Release:	2
+Release:	3
 Group:		Graphical desktop/Other
 License:	MIT
 URL:		http://fluxbox.sourceforge.net
