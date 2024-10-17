@@ -15,7 +15,7 @@ Version:	1.3.7
 Release:	3
 Group:		Graphical desktop/Other
 License:	MIT
-URL:		http://fluxbox.sourceforge.net
+URL:		https://fluxbox.sourceforge.net
 Source0:	http://prdownloads.sourceforge.net/%{name}/%{name}-%{version}.tar.gz
 Source3:	%{name}-icons.tar.bz2
 Source4:	%{name}-%{style}.tar.bz2
